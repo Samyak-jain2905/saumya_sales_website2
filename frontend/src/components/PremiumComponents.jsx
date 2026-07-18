@@ -263,40 +263,27 @@ export const PremiumLoader = () => {
         ✨
       </motion.div>
 
-      {/* The Logo */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.7, rotate: -8 }}
-        animate={{
-          opacity: exitPhase ? 0 : 1,
-          scale: exitPhase ? 1.2 : 1, // Exit: scales slightly larger
-          rotate: exitPhase ? 0 : 0,
-          y: exitPhase ? -20 : [0, -6, 0] // Exit: floats up while scaling
-        }}
-        transition={{
-          opacity: { duration: exitPhase ? 0.6 : 0.5 },
-          scale: { duration: exitPhase ? 0.6 : 0.5 },
-          rotate: { duration: 0.5 },
-          y: exitPhase ? { duration: 0.6 } : {
-            repeat: Infinity,
-            duration: 2,
-            ease: "easeInOut",
-            delay: 0.5 // starts floating after entrance
+      {/* The Logo (SVG Animated) */}
+      <div className="loader-logo-wrapper">
+        <svg viewBox="0 0 100 100" width="80" height="80">
+          <circle cx="50" cy="50" r="50" fill="#D4AF37"/>
+          <text x="50" y="68" textAnchor="middle" fill="#FFFFFF" fontSize="55" fontWeight="bold" fontFamily="serif">S</text>
+        </svg>
+      </div>
+      <style>
+        {`
+          .loader-logo-wrapper {
+            margin-bottom: 1.5rem;
+            animation: floatUpDown 2s ease-in-out infinite;
+            filter: drop-shadow(0 10px 15px rgba(212, 175, 55, 0.4));
           }
-        }}
-        style={{
-          width: '60px',
-          height: '60px',
-          background: '#D4AF37',
-          borderRadius: '50%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          marginBottom: '1.5rem',
-          boxShadow: '0 10px 30px rgba(212, 175, 55, 0.3)'
-        }}
-      >
-        <span style={{ color: 'white', fontWeight: 'bold', fontSize: '1.5rem' }}>S</span>
-      </motion.div>
+          @keyframes floatUpDown {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
+          }
+        `}
+      </style>
 
       {/* Brand Name Animation */}
       <div style={{ display: 'flex', gap: '0.5rem', overflow: 'hidden', marginBottom: '0.5rem' }}>
