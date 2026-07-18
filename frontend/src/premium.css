@@ -1,0 +1,657 @@
+/* ==========================================================================
+   Premium UI Overrides & Additions
+   ========================================================================== */
+
+/* 1. Lenis Smooth Scrolling */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* 2. Custom Cursor */
+body {
+  background: var(--bg-warm);
+  overflow-x: hidden;
+}
+
+
+.custom-cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background: var(--primary);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s;
+}
+
+.custom-cursor-outline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--primary);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease-out, height 0.3s ease-out, background 0.3s, opacity 0.3s;
+}
+
+.custom-cursor-outline.hovering {
+  width: 60px;
+  height: 60px;
+  background: rgba(197, 160, 89, 0.1);
+  border-color: transparent;
+}
+
+/* Disable Custom Cursor and Spotlight on Touch Devices */
+@media (hover: none) and (pointer: coarse), (max-width: 768px) {
+  .custom-cursor-dot,
+  .custom-cursor-outline,
+  .mouse-spotlight {
+    display: none !important;
+  }
+}
+
+/* 3. Scroll Progress Bar */
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  background: var(--primary);
+  z-index: 9999;
+  transform-origin: left;
+}
+
+/* 4. Premium Loader */
+.premium-loader {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-warm);
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader-text {
+  font-family: var(--font-serif);
+  font-size: 2.5rem;
+  color: var(--text-dark);
+  margin-bottom: 2rem;
+  letter-spacing: 2px;
+}
+
+.loader-line-container {
+  width: 200px;
+  height: 2px;
+  background: rgba(0,0,0,0.1);
+  overflow: hidden;
+  position: relative;
+}
+
+.loader-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 40%;
+  background: var(--primary);
+  animation: loadingLine 1.5s infinite ease-in-out;
+}
+
+@keyframes loadingLine {
+  0% { left: -40%; }
+  100% { left: 100%; }
+}
+
+/* 5. Floating WhatsApp Button */
+.whatsapp-floating-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 60px;
+  height: 60px;
+  background: #25D366;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  z-index: 9990;
+  box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+  text-decoration: none;
+  animation: pulseGreen 2s infinite;
+  transition: transform 0.3s;
+}
+
+.whatsapp-floating-btn:hover {
+  transform: scale(1.1);
+}
+
+@keyframes pulseGreen {
+  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+  70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+/* 6. Button Enhancements Override */
+.btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 20px 40px rgba(197, 160, 89, 0.3) !important;
+}
+
+.btn-secondary:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Button Ripple / Glow */
+.btn::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 60%);
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  transition: transform 0.5s, opacity 0.5s;
+  pointer-events: none;
+}
+.btn:hover::after {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+
+/* 7. Nav Link Underline Animation */
+.nav-links a {
+  position: relative;
+  display: inline-block;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary);
+  transition: width 0.3s ease;
+}
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* 8. Glassmorphism Nav Enhancement */
+nav {
+  background: rgba(255, 255, 255, 0.75) !important;
+  backdrop-filter: blur(18px) !important;
+  transition: padding 0.4s ease, height 0.4s ease !important;
+}
+nav.scrolled {
+  padding: 0.8rem 3rem !important;
+}
+
+/* 9. Experience Card Enhancements */
+.experience-card, .bento-item {
+  transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+.experience-card:hover, .bento-item:hover {
+  transform: translateY(-15px) scale(1.03) rotateX(2deg) !important;
+  box-shadow: 0 50px 100px rgba(45, 36, 36, 0.15) !important;
+}
+
+/* 10. Product Card Enhancements */
+.product-card {
+  transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+}
+.product-card:hover {
+  transform: translateY(-12px) !important;
+  box-shadow: 0 50px 100px rgba(45, 36, 36, 0.12) !important;
+  border-color: var(--primary) !important;
+}
+.product-card .add-to-inquiry-btn {
+  transform: translateY(100%);
+  opacity: 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transition: all 0.4s ease;
+}
+.product-card:hover .add-to-inquiry-btn {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* 11. Animated Gold Gradient */
+.gold-gradient-text {
+  background: linear-gradient(90deg, #c5a059, #f9d976, #c5a059);
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: shine 3s linear infinite;
+}
+
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+.gold-glow {
+  position: relative;
+}
+.gold-glow::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 150%;
+  height: 150%;
+  background: radial-gradient(circle, rgba(197, 160, 89, 0.2) 0%, transparent 60%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* 12. Marquee / Auto-scroll Logos */
+.marquee-container {
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  width: 100%;
+  display: flex;
+}
+.marquee-content {
+  display: flex;
+  gap: 4rem;
+  padding: 0 2rem;
+  animation: marquee 20s linear infinite;
+}
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* 13. Hero Pattern Background Override */
+.hero {
+  background: var(--bg-warm) !important;
+}
+.hero-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(197, 160, 89, 0.2) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.5;
+  z-index: 0;
+  animation: floatBg 20s infinite linear;
+}
+@keyframes floatBg {
+  from { background-position: 0 0; }
+  to { background-position: 40px 40px; }
+}
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* 14. Testimonial Cards Hover */
+.testimonial-card {
+  transition: all 0.5s ease;
+  border: 1px solid transparent;
+}
+.testimonial-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+  border-color: var(--primary);
+}
+
+/* 15. Background Noise (Phase 1) */
+.bg-noise {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.02;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* 16. Section Dividers (Phase 1) */
+.section-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 4rem 0;
+  color: var(--primary);
+  opacity: 0.7;
+}
+.section-divider::before,
+.section-divider::after {
+  content: '';
+  height: 1px;
+  width: 100px;
+  background: currentColor;
+  opacity: 0.5;
+}
+.section-divider-icon {
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+}
+
+/* 17. Premium Gradient Typography (Phase 1) */
+.premium-gradient-text {
+  background: linear-gradient(120deg, var(--text-dark) 0%, var(--text-dark) 40%, var(--primary) 50%, var(--text-dark) 60%, var(--text-dark) 100%);
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  transition: background-position 0.5s ease;
+}
+.premium-gradient-text:hover {
+  background-position: right center;
+  animation: shineText 1.5s linear infinite;
+}
+@keyframes shineText {
+  to { background-position: -200% center; }
+}
+
+/* 18. Button Enhancements (Phase 2) */
+.btn-premium {
+  position: relative;
+  overflow: hidden;
+}
+.btn-premium .btn-arrow {
+  display: inline-block;
+  margin-left: 0.5rem;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+  transform: translateX(-10px);
+}
+.btn-premium:hover .btn-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+.btn-premium:hover {
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* 19. Product Cards Premium Hover (Phase 3) */
+.product-card {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+}
+.product-image-wrapper {
+  overflow: hidden;
+  position: relative;
+}
+.product-image {
+  transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.product-card:hover .product-image {
+  transform: scale(1.08);
+}
+.product-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+  transform: skewX(-25deg);
+  transition: all 0.75s ease;
+  z-index: 2;
+  pointer-events: none;
+}
+.product-card:hover::before {
+  animation: shine 1s;
+}
+@keyframes shine {
+  100% { left: 200%; }
+}
+.product-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+/* 20. Footer Links Hover (Phase 4) */
+.footer-link {
+  position: relative;
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+}
+.footer-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--primary);
+  transition: width 0.3s ease;
+}
+.footer-link::before {
+  content: '→';
+  position: absolute;
+  left: -20px;
+  opacity: 0;
+  color: var(--primary);
+  transition: all 0.3s ease;
+}
+.footer-link:hover {
+  color: white;
+  transform: translateX(20px);
+}
+.footer-link:hover::after {
+  width: 100%;
+}
+.footer-link:hover::before {
+  opacity: 1;
+  left: -25px;
+}
+
+/* 21. Background Grid (Phase 1 / 40 Effects) */
+.bg-grid {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.03;
+  background-size: 50px 50px;
+  background-image: 
+    linear-gradient(to right, var(--text-dark) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--text-dark) 1px, transparent 1px);
+}
+
+/* 22. Ripple Effect (Phase 2 / 40 Effects) */
+.mouse-ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(197, 160, 89, 0.4);
+  transform: scale(0);
+  animation: rippleAnim 0.6s linear;
+  pointer-events: none;
+  z-index: 9999;
+}
+@keyframes rippleAnim {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* 23. Image Lazy Reveal (Blur to Sharp) */
+.lazy-image {
+  filter: blur(20px);
+  transition: filter 1s ease-out;
+}
+.lazy-image.loaded {
+  filter: blur(0);
+}
+
+/* 24. FAQ Accordion Transitions */
+.faq-content {
+  overflow: hidden;
+  transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out;
+  max-height: 0;
+  opacity: 0;
+}
+.faq-content.open {
+  max-height: 500px; /* arbitrary large value */
+  opacity: 1;
+}
+.faq-icon {
+  transition: transform 0.3s ease;
+}
+.faq-item.open .faq-icon {
+  transform: rotate(45deg); /* + becomes x or - */
+}
+
+/* 25. Glass Cards / Backdrop Blur (Request 24) */
+.glass-card-premium {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* 26. Floating Animations */
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.float-element {
+  animation: floatY 6s ease-in-out infinite;
+}
+.float-element-delay-1 { animation-delay: 1s; }
+.float-element-delay-2 { animation-delay: 2s; }
+.float-element-delay-3 { animation-delay: 3s; }
+
+/* 27. Typewriter Cursor */
+.typewriter-cursor {
+  display: inline-block;
+  width: 2px;
+  background-color: var(--primary);
+  margin-left: 2px;
+  animation: blink 1s step-end infinite;
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* 28. Spotlight (Request 3) */
+.mouse-spotlight {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(197, 160, 89, 0.1) 0%, transparent 50%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1000;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s;
+}
+
+/* 29. Number Glow Hover (Request 15) */
+.stat-item h3 {
+  transition: text-shadow 0.3s ease;
+}
+.stat-item:hover h3 {
+  text-shadow: 0 0 15px rgba(197, 160, 89, 0.8);
+  color: var(--primary);
+}
+
+/* 30. Navbar Scroll Shrink (Request 16) */
+.premium-nav {
+  transition: all 0.4s ease-in-out;
+}
+.premium-nav.scrolled {
+  padding: 0.5rem 2rem !important; /* Shrinks */
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+/* 31. Infinite Marquee (Request 29) */
+.infinite-marquee {
+  display: flex;
+  overflow: hidden;
+  white-space: nowrap;
+  background: var(--text-dark);
+  color: white;
+  padding: 1.5rem 0;
+}
+.infinite-marquee-content {
+  display: flex;
+  gap: 3rem;
+  animation: marquee-infinite 30s linear infinite;
+  padding-left: 3rem;
+}
+.infinite-marquee-content span {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-style: italic;
+}
+@keyframes marquee-infinite {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* 32. Animated Button Gradient (Request 20) */
+.btn-animated-gradient {
+  background: linear-gradient(90deg, var(--text-dark), var(--primary), var(--text-dark));
+  background-size: 200% auto;
+  transition: all 0.5s ease;
+}
+.btn-animated-gradient:hover {
+  background-position: right center;
+  transform: translateY(-2px);
+}

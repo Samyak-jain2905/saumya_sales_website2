@@ -1,0 +1,1 @@
+import CountUp from 'react-countup'; console.log('CountUp type:', typeof CountUp, 'CountUp.default type:', typeof CountUp.default, 'CountUp.typeof:', CountUp.typeof, 'CountUp.default.typeof:', CountUp.default ? CountUp.default.typeof : 'N/A');  
