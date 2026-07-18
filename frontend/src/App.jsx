@@ -170,7 +170,14 @@ const AppContent = () => {
 
   return (
     <AnimatePresence mode="wait">
-    <div key={lang} className="app">
+    <motion.div 
+      key={lang}
+      className="app"
+      initial={{ opacity: 1, y: 0 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -30 }}
+      transition={{ duration: 0.8, ease: "easeInOut" }}
+    >
       <div className="bg-noise" />
       <div className="bg-grid" />
       <CustomCursor />
@@ -414,7 +421,7 @@ const AppContent = () => {
       </motion.footer>
       
       <MobileBottomNav setOverlayOpen={setOverlayOpen} setCallBackOpen={setCallBackOpen} />
-    </div>
+    </motion.div>
     </AnimatePresence>
   );
 };
